@@ -10,7 +10,7 @@ from schema.patient import Patients, patients
 class AppointmentsStatus(Enum):
     PENDING = "Pending"
     COMPLETED = "Completed"
-    
+
 
 class Appointments(BaseModel):
     id: int
@@ -20,18 +20,13 @@ class Appointments(BaseModel):
     status: AppointmentsStatus = AppointmentsStatus.PENDING
 
 
-class AppointmentsCreate(BaseModel):
+class AppointmentsCreateEdit(BaseModel):
     patient_id: int
     date: date
-
-class AppointmentsEdit(BaseModel):
-    patient_id: Optional[int] = None
-    date: date
-    
 
 
 appointments: dict[int, Appointments] = {
     0: Appointments(
-    id=0, patient=patients[0], doctor=doctors[0].name, date=date(2024, 3, 19)
-)
+        id=0, patient=patients[0], doctor=doctors[0].name, date=date(2024, 3, 19)
+    )
 }
