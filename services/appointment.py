@@ -42,12 +42,12 @@ class AppointmentService:
     def edit_appointment(appointment_id: int, payload: AppointmentsCreateEdit):
         appointment = AppointmentHelpers.get_appointment_by_id(appointment_id)
 
-        if payload.patient_id != None:
-            appointment.patient = patients.get(payload.patient_id)
-            if appointment.patient is None:
-                raise HTTPException(
-                    detail='Patient not found.', status_code=404
-                )
+        
+        appointment.patient = patients.get(payload.patient_id)
+        if appointment.patient is None:
+            raise HTTPException(
+                detail='Patient not found.', status_code=404
+            )
         appointment.date = payload.date
         return appointment
 
