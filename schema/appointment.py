@@ -3,7 +3,7 @@ from enum import Enum
 from typing import Optional
 from pydantic import BaseModel
 
-from schema.doctor import doctors
+from schema.doctor import Doctors, doctors
 from schema.patient import Patients, patients
 
 
@@ -15,7 +15,7 @@ class AppointmentsStatus(Enum):
 class Appointments(BaseModel):
     id: int
     patient: Patients
-    doctor: str
+    doctor: Doctors
     date: date
     status: AppointmentsStatus = AppointmentsStatus.PENDING
 
@@ -27,6 +27,6 @@ class AppointmentsCreateEdit(BaseModel):
 
 appointments: dict[int, Appointments] = {
     0: Appointments(
-        id=0, patient=patients[0], doctor=doctors[0].name, date=date(2024, 3, 19)
+        id=0, patient=patients[0], doctor=doctors[0], date=date(2024, 3, 19)
     )
 }

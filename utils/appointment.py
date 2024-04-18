@@ -9,7 +9,7 @@ class AppointmentHelpers:
           for doctor_id, doctor in doctors.items():
               if doctor.is_available == AvailabilityStatus.TRUE:
                   doctor.is_available = AvailabilityStatus.FALSE
-                  return doctors[doctor_id].name
+                  return doctors[doctor_id]
           raise HTTPException(
                detail='No doctor available', status_code=404)
      
