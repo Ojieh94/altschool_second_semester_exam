@@ -1,5 +1,6 @@
+
 from fastapi import HTTPException
-from schema.doctor import AvailabilityStatus, DoctorsEdit, doctors, Doctors, DoctorsCreate
+from schema.doctor import DoctorsEdit, doctors, Doctors, DoctorsCreate
 
 
 class DoctorService:
@@ -59,5 +60,9 @@ class DoctorService:
             raise HTTPException(
                 detail='Doctor does not exist.', status_code=404)
 
-        doctor.is_available = AvailabilityStatus.FALSE
+        if doctor.is_available == True:
+            doctor.is_available = False
+        else:
+            doctor.is_available = True
+        
         return doctor

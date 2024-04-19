@@ -2,7 +2,7 @@ from fastapi import HTTPException
 
 from schema import appointment
 from schema.appointment import Appointments, AppointmentsCreateEdit, AppointmentsStatus, appointments
-from schema.doctor import AvailabilityStatus, Doctors, doctors
+from schema.doctor import Doctors, doctors
 from schema.patient import patients
 from utils.appointment import AppointmentHelpers
 
@@ -57,7 +57,7 @@ class AppointmentService:
 
         for doc, doctor in doctors.items():
             if doctor.name == appointment.doctor:
-                doctor.is_available = AvailabilityStatus.TRUE
+                doctor.is_available = True
 
         del appointments[appointment_id]
 
@@ -67,6 +67,6 @@ class AppointmentService:
         appointment.status = AppointmentsStatus.COMPLETED
 
         for doc, doctor in doctors.items():
-            if doctor.name == appointment.doctor:
-                doctor.is_available = AvailabilityStatus.TRUE
+            if doctor == appointment.doctor:
+                doctor.is_available = True
         return appointment

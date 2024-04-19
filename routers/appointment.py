@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from schema.appointment import Appointments, AppointmentsCreateEdit, appointments
+from schema.appointment import AppointmentsCreateEdit, appointments
 from services.appointment import AppointmentService
 
 

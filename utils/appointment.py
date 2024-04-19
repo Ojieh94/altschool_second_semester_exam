@@ -1,5 +1,5 @@
 from fastapi import HTTPException
-from schema.doctor import AvailabilityStatus, doctors
+from schema.doctor import doctors
 from schema.appointment import appointments
 
 class AppointmentHelpers:
@@ -7,8 +7,8 @@ class AppointmentHelpers:
      @staticmethod
      def appoint_doctor_to_patient():
           for doctor_id, doctor in doctors.items():
-              if doctor.is_available == AvailabilityStatus.TRUE:
-                  doctor.is_available = AvailabilityStatus.FALSE
+              if doctor.is_available == True:
+                  doctor.is_available = False
                   return doctors[doctor_id]
           raise HTTPException(
                detail='No doctor available', status_code=404)
