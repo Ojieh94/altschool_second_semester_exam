@@ -56,7 +56,7 @@ class AppointmentService:
         appointment = AppointmentHelpers.get_appointment_by_id(appointment_id)
 
         for doc, doctor in doctors.items():
-            if doctor.name == appointment.doctor:
+            if doctor == appointment.doctor:
                 doctor.is_available = True
 
         del appointments[appointment_id]
