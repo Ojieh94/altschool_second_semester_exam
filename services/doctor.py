@@ -64,5 +64,5 @@ class DoctorService:
             doctor.is_available = False
         else:
             doctor.is_available = True
-        
+
         return doctor
