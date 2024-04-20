@@ -23,3 +23,10 @@ class AppointmentHelpers:
             raise HTTPException(
                 detail='Appointment not found', status_code=404)
         return appointment
+
+    @staticmethod
+    def set_doctor_availability_true(appointment):
+        for doc, doctor in doctors.items():
+            if doctor == appointment.doctor:
+                doctor.is_available = True
+        return appointment

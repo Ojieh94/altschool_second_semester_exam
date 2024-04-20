@@ -62,9 +62,7 @@ class AppointmentService:
     def delete_appointment(appointment_id: int):
         appointment = AppointmentHelpers.get_appointment_by_id(appointment_id)
 
-        for doc, doctor in doctors.items():
-            if doctor == appointment.doctor:
-                doctor.is_available = True
+        AppointmentHelpers.set_doctor_availability_true(appointment)
 
         del appointments[appointment_id]
 
@@ -73,7 +71,6 @@ class AppointmentService:
         appointment = AppointmentHelpers.get_appointment_by_id(appointment_id)
         appointment.status = AppointmentsStatus.COMPLETED
 
-        for doc, doctor in doctors.items():
-            if doctor == appointment.doctor:
-                doctor.is_available = True
+        AppointmentHelpers.set_doctor_availability_true(appointment)
+
         return appointment
