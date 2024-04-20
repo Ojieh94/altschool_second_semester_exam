@@ -27,6 +27,12 @@ class AppointmentService:
         patient = patients.get(payload.patient_id)
         if not patient:
             raise HTTPException(detail='Patient not found', status_code=404)
+        
+        # Check if patient has pending appointment
+        
+        for key, appointment in appointments.items():
+            if patient == appointment.patient and appointment.status == AppointmentsStatus.PENDING:
+                raise HTTPException(detail='Patient has pending appointment. Please complete pending appointment', status_code=200)
         doctor: Doctors = AppointmentHelpers.appoint_doctor_to_patient()
 
         appointment = Appointments(

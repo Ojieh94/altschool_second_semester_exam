@@ -1,6 +1,8 @@
 from fastapi import HTTPException
 from schema.doctor import doctors
-from schema.appointment import appointments
+from schema.appointment import appointments, AppointmentsCreateEdit
+from schema.patient import patients
+from services import patient
 
 class AppointmentHelpers:
     
@@ -19,6 +21,8 @@ class AppointmentHelpers:
           if not appointment:
             raise HTTPException(detail='Appointment not found', status_code=404)
           return appointment
+     
+     
      
      
     
